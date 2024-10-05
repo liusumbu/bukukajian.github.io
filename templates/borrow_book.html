@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinjam Buku</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Pinjam Buku</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="book_title">Judul Buku:</label>
+                <select id="book_title" name="book_title" class="form-control" required>
+                    {% for book in books %}
+                    {% if not book.borrowed %}
+                    <option value="{{ book.title }}">{{ book.title }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="borrower_name">Nama Peminjam:</label>
+                <input type="text" id="borrower_name" name="borrower_name" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-warning">Pinjam</button>
+        </form>
+        <a href="/" class="btn btn-link">Kembali ke Halaman Utama</a>
+    </div>
+</body>
+</html>

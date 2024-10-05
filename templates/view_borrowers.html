@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Peminjam</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Daftar Peminjam</h1>
+        <ul class="list-group">
+            {% for borrower in borrowers %}
+            <li class="list-group-item">
+                {{ borrower.name }} meminjam "<strong>{{ borrower.book }}</strong>"
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="/" class="btn btn-link">Kembali ke Halaman Utama</a>
+    </div>
+</body>
+</html>

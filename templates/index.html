@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan Online</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hero {
+            background-image: url('https://example.com/library-background.jpg'); /* Ganti dengan URL gambar perpustakaan yang diinginkan */
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Selamat Datang di Perpustakaan Online</h1>
+        <p>Temukan berbagai buku yang bisa Anda pinjam dan baca.</p>
+    </div>
+
+    <div class="container mt-4">
+        <div class="btn-group mb-4" role="group">
+            <a href="/add_book" class="btn btn-primary">Tambah Buku</a>
+            <a href="/borrow_book" class="btn btn-warning">Pinjam Buku</a>
+            <a href="/return_book" class="btn btn-success">Kembalikan Buku</a>
+            <a href="/view_borrowers" class="btn btn-info">Lihat Peminjam</a>
+        </div>
+
+        <h2 class="mt-4">Daftar Buku</h2>
+        <div class="row">
+            {% for book in books %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Oleh: {{ book.author }}</h6>
+                        <p class="card-text">
+                            {% if book.borrowed %}
+                            <span class="text-danger">Dipinjam</span>
+                            {% else %}
+                            <span class="text-success">Tersedia</span>
+                            <a href="{{ url_for('uploaded_file', filename=book.filename) }}" class="btn btn-link">Unduh PDF</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
